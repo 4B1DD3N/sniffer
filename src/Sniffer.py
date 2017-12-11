@@ -1,4 +1,3 @@
-from termcolor import colored
 import os
 import pcapy
 
@@ -10,26 +9,58 @@ class Sniffer:
     shell = True
     interface = None
     message = None
+    commands = None
+    aliases = None
 
     def __init__(self):
+        self.commands = {
+            'exit':       self.exit,
+            'commands':   self.show_commands,
+            'start':      self.start,
+            'devices':    self.list_devices,
+            'device set': self.set_device,
+            'aliases':    self.show_aliases
+        }
+        self.aliases = {
+            'd':  'devices',
+            'ds': 'device set',
+            'e':  'exit',
+            'c':  'commands',
+            's':  'start',
+            'a':  'aliases'
+        }
         self.message = Message()
         pass
 
     def exit(self):
         self.shell = False
 
-    def commands(self):
-        self.message.info('commands: show all the commands')
-        self.message.info('interface: set the interface to capture packets')
-        self.message.info('start: start capturing packets')
+    def show_commands(self):
+        for command in self.commands:
+            self.message.info(command)
 
     def start(self):
         Capturer()
 
-    def set_interface(self):
-        self.interface = self.message.info_raw('Interface for capturing packets: ')
-        self.message.info('The capturing interface was changed.')
-        self.message.info('Capturing will take place on interface: %s' % self.interface)
+    def set_device(self):
+        i = 0
+
+        devices = pcapy.findalldevs()
+
+        for device in devices:
+            self.message.info("%s %s" % (str(i), device))
+            i += 1
+
+        i -= 1
+
+        input = int(self.message.info_raw('Device for capturing packets [0 -> %s]: ' % str(i)))
+
+        if input > (len(devices) - 1) or input < 0:
+            self.message.info('Invalid device. Try again.')
+        else:
+            self.interface = devices[input]
+            self.message.info('The capturing device was changed.')
+            self.message.info('Capturing will take place on device: %s' % self.interface)
 
     def sniffer_ascii_art(self):
         with open('src/sniffer_ascii_art.txt', 'r') as ascii_art:
@@ -40,21 +71,19 @@ class Sniffer:
         for device in pcapy.findalldevs():
             self.message.info(device)
 
+    def show_aliases(self):
+        for alias in self.aliases:
+            self.message.info("%s => %s" % (alias, self.aliases[alias]))
+
     def menu(self):
         self.sniffer_ascii_art()
 
         while self.shell:
-            commands = {
-                'exit':      self.exit,
-                'commands':  self.commands,
-                'start':     self.start,
-                'interface': self.set_interface,
-                'devices':   self.list_devices
-            }
-
             input = self.message.info_raw('Sniffer> ')
 
-            if input in commands:
-                commands.get(input)()
+            if input in self.commands:
+                self.commands.get(input)()
+            elif input in self.aliases:
+                self.commands.get(self.aliases[input])()
             else:
                 os.system(input)

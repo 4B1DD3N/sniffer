@@ -1,7 +1,8 @@
 .PHONY: clean-pyc install run
 
 clean-pyc:
-	find . -name '*.pyc' -exec rm --force {}
+	find . -name "*.pyc" -type f
+	find . -name "*.pyc" -type f -delete
 
 install:
 	sudo apt-get install libpcap0.8-dev
