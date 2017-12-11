@@ -19,7 +19,8 @@ class Sniffer:
             'start':      self.start,
             'devices':    self.list_devices,
             'device set': self.set_device,
-            'aliases':    self.show_aliases
+            'aliases':    self.show_aliases,
+            'clear':      self.clear
         }
         self.aliases = {
             'd':  'devices',
@@ -27,10 +28,14 @@ class Sniffer:
             'e':  'exit',
             'c':  'commands',
             's':  'start',
-            'a':  'aliases'
+            'a':  'aliases',
+            'l':  'clear'
         }
         self.message = Message()
         pass
+
+    def clear(self):
+        os.system('cls' if os.name == 'nt' else 'clear')
 
     def exit(self):
         self.shell = False
@@ -40,7 +45,10 @@ class Sniffer:
             self.message.info(command)
 
     def start(self):
-        Capturer()
+        if self.interface is None:
+            self.message.info('No device set.')
+        else:
+            Capturer(self.interface).start()
 
     def set_device(self):
         i = 0

@@ -9,4 +9,6 @@ install:
 	sudo pip install -r requirements.txt
 	
 run:
-	chmod +x sniffer && ./sniffer
+	chmod +x sniffer
+	echo "Sniffer needs root permission to capture packets on devices."
+	sudo ./sniffer
