@@ -1,0 +1,2 @@
+pcapy==0.11.1
+termcolor==1.1.0
