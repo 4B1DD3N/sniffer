@@ -1,5 +1,6 @@
 from termcolor import colored
 import os
+import pcapy
 
 from src.Capturer import Capturer
 from src.Message import Message
@@ -35,6 +36,10 @@ class Sniffer:
             for line in ascii_art.readlines():
                 self.message.info(line)
 
+    def list_devices(self):
+        for device in pcapy.findalldevs():
+            self.message.info(device)
+
     def menu(self):
         self.sniffer_ascii_art()
 
@@ -43,7 +48,8 @@ class Sniffer:
                 'exit':      self.exit,
                 'commands':  self.commands,
                 'start':     self.start,
-                'interface': self.set_interface
+                'interface': self.set_interface,
+                'devices':   self.list_devices
             }
 
             input = self.message.info_raw('Sniffer> ')

@@ -6,7 +6,7 @@ class Message:
         pass
 
     def info(self, text):
-        print colored(text, 'blue')
+        print colored(text, 'green')
 
     def info_raw(self, text):
-        return raw_input(colored(text, 'blue'))
+        return raw_input(colored(text, 'green'))
