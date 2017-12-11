@@ -1,0 +1,6 @@
+#!/usr/bin/env python2
+
+from src.Sniffer import Sniffer
+
+if __name__ == '__main__':
+    Sniffer().menu()
