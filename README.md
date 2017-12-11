@@ -5,7 +5,14 @@
 ### Installation
 
 ```
-chmod +x sniffer && ./sniffer
+make install
+```
+
+### Run the application
+
+
+```
+make run
 ```
 
 ![](sniffer.png)
