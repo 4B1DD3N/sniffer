@@ -10,9 +10,14 @@ make install
 
 ### Run the application
 
-
 ```
 make run
+```
+
+### Cleanup compiled Python bytecode
+
+```
+make clean-pyc
 ```
 
 ![](sniffer.PNG)
