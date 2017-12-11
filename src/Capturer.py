@@ -1,4 +1,4 @@
-import pcap
+import pcapy
 
 
 class Capturer:
