@@ -18,6 +18,9 @@ More information soon.
   - [ ] UDP
 - [ ] Application layer parsing
   - [ ] HTTP
+  - [ ] DNS
+  - [ ] FTP
+  - [ ] Telnet
 - [ ] DNI Selectors
 
 ### Installation
