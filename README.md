@@ -8,6 +8,8 @@ More information soon.
 
 ### Installation
 
+Makefile assumes Python version 2 and pip package manager are installed on the system.
+
 ```
 make install
 ```
