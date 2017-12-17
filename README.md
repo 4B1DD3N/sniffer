@@ -8,6 +8,18 @@ The tool is being developed as part of a Bachelor's degree final work together w
 
 More information soon.
 
+## Roadmap
+
+
+- [x] Link layer parsing (Ethernet)
+- [x] Internet layer parsing (IPv4)
+- [ ] Transport layer parsing (TCP)
+  - [x] TCP
+  - [ ] UDP
+- [ ] Application layer parsing
+  - [ ] HTTP
+- [ ] DNI Selectors
+
 ### Installation
 
 Makefile assumes Python version 2 and pip package manager are installed on the system.
