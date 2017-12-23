@@ -12,7 +12,9 @@ class Sniffer:
     commands = None
     aliases = None
 
-    def __init__(self):
+    def __init__(self, config=None):
+        self.message = Message(config)
+
         self.commands = {
             'exit':       self.exit,
             'commands':   self.show_commands,
@@ -31,8 +33,6 @@ class Sniffer:
             'a':  'aliases',
             'l':  'clear'
         }
-        self.message = Message()
-        pass
 
     def clear(self):
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -86,12 +86,15 @@ class Sniffer:
     def menu(self):
         self.sniffer_ascii_art()
 
-        while self.shell:
-            input = self.message.info_raw('Sniffer> ')
+        try:
+            while self.shell:
+                input = self.message.info_raw('Sniffer> ')
 
-            if input in self.commands:
-                self.commands.get(input)()
-            elif input in self.aliases:
-                self.commands.get(self.aliases[input])()
-            else:
-                os.system(input)
+                if input in self.commands:
+                    self.commands.get(input)()
+                elif input in self.aliases:
+                    self.commands.get(self.aliases[input])()
+                else:
+                    os.system(input)
+        except (KeyboardInterrupt, SystemExit):
+            self.message.info('Bye!')

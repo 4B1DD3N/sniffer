@@ -12,6 +12,7 @@ class Capturer:
     interface = None
     message = None
     verbose = 0
+    http_packets = []
 
     def __init__(self, interface):
         self.interface = interface
@@ -50,4 +51,8 @@ class Capturer:
                 tcp_packet_payload = tcp_packet.get_payload()
 
                 if "HTTP" in tcp_packet_payload:
-                    HTTPPacket(tcp_packet_payload)
+                    http_packet = HTTPPacket(tcp_packet_payload)
+
+                    self.http_packets.append(http_packet)
+
+                    self.message.info_space(self.http_packets)

@@ -1,6 +1,15 @@
 #!/usr/bin/env python2
 
+import os.path
+
 from src.Sniffer import Sniffer
 
 if __name__ == '__main__':
-    Sniffer().menu()
+    config = None
+
+    if os.path.exists('config.sniffer'):
+        with open('config.sniffer', 'r') as config_file:
+            # Remove all comments from the config file.
+            config = [line.strip() for line in config_file if line[0][0:1] != '#']
+
+    Sniffer(config).menu()

@@ -13,7 +13,7 @@ install: ## Install the required Python packages
 	sudo pip install -r requirements.txt
 	
 run: ## Run the application
-	@if [ -f sniffer && -x sniffer ]; then\
+	@if [[ -f sniffer && -x sniffer ]]; then\
 	    echo "Execution permission check succeeded.";\
 	else\
 	    echo "Changing execute permission...";\

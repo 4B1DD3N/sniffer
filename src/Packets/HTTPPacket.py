@@ -1,14 +1,10 @@
 from StringIO import StringIO
-
-import zlib
 from http_parser.http import HttpStream
 from http_parser.reader import IterReader
 
 
 class HTTPPacket:
     packet = None
-    status_code = None
-    version = None
     http_stream = None
     payload = None
 
@@ -18,14 +14,13 @@ class HTTPPacket:
             self.parse()
 
     def parse(self):
-        reader = IterReader(StringIO(self.packet))
-
-        self.http_stream = HttpStream(reader)
-
         try:
-            # Bug: sometimes GZIP is not decompressed correctly...
+            reader = IterReader(StringIO(self.packet))
+
+            self.http_stream = HttpStream(reader)
+
             self.payload = self.http_stream.body_file().read()
         except:
-            pass
+            self.payload = self.packet
 
         return self
