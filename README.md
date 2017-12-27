@@ -10,7 +10,6 @@ More information soon.
 
 ## Roadmap
 
-
 - [x] Link layer parsing (Ethernet)
 - [x] Internet layer parsing (IPv4)
 - [ ] Transport layer parsing (TCP)
@@ -22,6 +21,12 @@ More information soon.
   - [ ] FTP
   - [ ] Telnet
 - [ ] DNI Selectors
+- [ ] Improve Makefile (all, clean, install, prune, help)
+  - [ ] All
+  - [ ] Clean
+  - [x] Install
+  - [ ] Prune
+  - [x] Help
 
 ### Installation
 
