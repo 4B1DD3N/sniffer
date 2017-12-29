@@ -1,5 +1,6 @@
-.PHONY: help clean-pyc install run
+.PHONY: help clean-pyc install run all
 .DEFAULT_GOAL=help
+SHELL=/bin/bash
 
 help: ## Show help comments for the targets
 	@grep -E '(^[a-zA-Z_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-10s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
@@ -8,8 +9,9 @@ clean-pyc: ## Delete the compiled Python bytecode files
 	find . -name "*.pyc" -type f
 	find . -name "*.pyc" -type f -delete
 
-install: ## Install the required Python packages
-	sudo apt-get install libpcap0.8-dev
+install: ## Install the application
+	sudo apt-get update
+	sudo apt-get install python2.7 python-pip libpcap0.8-dev
 	sudo pip install -r requirements.txt
 	
 run: ## Run the application
@@ -21,3 +23,5 @@ run: ## Run the application
 	fi
 	echo "Sniffer needs root permission to capture packets."
 	sudo ./sniffer
+
+all: install run ## Install and run the application
