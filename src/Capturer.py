@@ -6,6 +6,7 @@ from src.Packets.EthernetPacket import EthernetPacket
 from src.Packets.HTTPPacket import HTTPPacket
 from src.Packets.IPPacket import IPPacket
 from src.Packets.TCPPacket import TCPPacket
+from src.Packets.UDPPacket import UDPPacket
 
 
 class Capturer:
@@ -44,7 +45,6 @@ class Capturer:
 
             ip_packet_payload = ip_packet.get_payload()
 
-            # 17, 6
             if ip_packet_protocol == 6:
                 tcp_packet = TCPPacket(ip_packet_payload)
 
@@ -56,3 +56,13 @@ class Capturer:
                     self.http_packets.append(http_packet)
 
                     self.message.info_space(self.http_packets)
+
+            elif ip_packet_protocol == 17:
+                udp_packet = UDPPacket(ip_packet_payload)
+
+                self.message.info('UDP PACKET FOUND')
+                self.message.info_space(udp_packet.to_string())
+                self.message.info(udp_packet.get_payload())
+
+            elif ip_packet_protocol == 1:
+                self.message.info_space('ICMP not yet supported.')

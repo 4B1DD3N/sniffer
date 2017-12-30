@@ -14,7 +14,7 @@ More information soon.
 - [x] Internet layer parsing (IPv4)
 - [ ] Transport layer parsing (TCP)
   - [x] TCP
-  - [ ] UDP
+  - [x] UDP
 - [ ] Application layer parsing
   - [ ] HTTP
   - [ ] DNS
