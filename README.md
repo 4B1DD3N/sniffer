@@ -11,8 +11,11 @@ More information soon.
 ## Roadmap
 
 - [x] Link layer parsing (Ethernet)
-- [x] Internet layer parsing (IPv4)
-- [ ] Transport layer parsing (TCP)
+- [x] Internet layer parsing
+  - [x] IPv4
+  - [x] IGMP
+  - [ ] ICMP
+- [x] Transport layer parsing (PDU's)
   - [x] TCP
   - [x] UDP
 - [ ] Application layer parsing
@@ -22,7 +25,7 @@ More information soon.
   - [ ] Telnet
 - [ ] DNI Selectors
 - [ ] Improve Makefile (all, clean, install, prune, help)
-  - [x] All
+  - [ ] All
   - [ ] Clean
   - [x] Install
   - [ ] Prune

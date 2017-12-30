@@ -4,6 +4,7 @@ import pcapy
 from src.Message import Message
 from src.Packets.EthernetPacket import EthernetPacket
 from src.Packets.HTTPPacket import HTTPPacket
+from src.Packets.IGMPPacket import IGMPPacket
 from src.Packets.IPPacket import IPPacket
 from src.Packets.TCPPacket import TCPPacket
 from src.Packets.UDPPacket import UDPPacket
@@ -35,7 +36,6 @@ class Capturer:
 
         ethernet_packet_type = ethernet_packet.get_type()
 
-        # IP? ARP? RARP? etc (8, 56710)
         if ethernet_packet_type == 8:
             ethernet_packet_payload = ethernet_packet.get_payload()
 
@@ -60,9 +60,19 @@ class Capturer:
             elif ip_packet_protocol == 17:
                 udp_packet = UDPPacket(ip_packet_payload)
 
-                self.message.info('UDP PACKET FOUND')
                 self.message.info_space(udp_packet.to_string())
                 self.message.info(udp_packet.get_payload())
 
             elif ip_packet_protocol == 1:
-                self.message.info_space('ICMP not yet supported.')
+                self.message.info_space('ICMP not yet fully supported.')
+
+            elif ip_packet_protocol == 2:
+                igmp_header = IGMPPacket(ip_packet_payload)
+
+                self.message.info(igmp_header.to_string())
+
+            else:
+                self.message.info_space('Unsupported protocol (not UDP, TCP, ICMP): %s' % ip_packet_protocol)
+
+        else:
+            self.message.info_space('Unsupported type (ARP, RARP, etc): %s' % ethernet_packet_type)
