@@ -38,7 +38,7 @@ class IGMPPacket:
         self.checksum = igmp_header[2]
         self.group_address = igmp_header[3]
 
-        # If length it greater than 4 bytes, it's IGMPv3.
+        # If header length is greater than 4 bytes, it's IGMPv3.
         # Parse accordingly...
 
         return self
@@ -47,7 +47,7 @@ class IGMPPacket:
         if self.type_table.has_key(self.type):
             return self.type_table[self.type]
         else:
-            return 'Unknown / experimental.'
+            return 'Unknown / Experimental'
 
     def to_string(self):
         return 'Type: %s, Max Resp Time: %s, Checksum: %s, Group Address: %s' \
