@@ -22,7 +22,7 @@ More information soon.
   - [ ] Telnet
 - [ ] DNI Selectors
 - [ ] Improve Makefile (all, clean, install, prune, help)
-  - [ ] All
+  - [x] All
   - [ ] Clean
   - [x] Install
   - [ ] Prune
