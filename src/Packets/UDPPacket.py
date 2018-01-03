@@ -30,5 +30,5 @@ class UDPPacket:
         return self
 
     def to_string(self):
-        return 'Source Port: %s, Destination Port: %s, Length: %s, Checksum: %s' \
+        return 'UDP Source Port: %s, Destination Port: %s, Length: %s, Checksum: %s' \
                % (self.source_port, self.destination_port, self.length, self.checksum)

@@ -23,6 +23,9 @@ class TCPPacket:
     def get_payload(self):
         return self.payload
 
+    def get_source_port(self):
+        return int(self.source_port)
+
     def parse(self):
         tcp_header = unpack('!HHLLBBHHH', self.packet[:self.header_length])
 
@@ -39,3 +42,7 @@ class TCPPacket:
         self.payload = self.packet[self.offset / 4:]
 
         return self
+
+    def to_string(self):
+        return 'TCP Source port: %s, Destination port: %s, Checmsum: %s' \
+               % (self.source_port, self.destination_port, self.checksum)

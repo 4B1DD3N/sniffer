@@ -21,6 +21,13 @@ class HTTPPacket:
 
             self.payload = self.http_stream.body_file().read()
         except:
+            '''
+            If we cannot parse the HTTP stream it most likely means we have to reassemble the HTTP transfer on a higher 
+            layer, for instance TCP. For now, let's assume the packet itself is just part of the HTTP body.
+            '''
             self.payload = self.packet
 
         return self
+
+    def to_string(self):
+        return 'HTTP payload: %s' % self.payload

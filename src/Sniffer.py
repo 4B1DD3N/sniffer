@@ -48,6 +48,7 @@ class Sniffer:
         if self.interface is None:
             self.message.info('No device set.')
         else:
+            self.clear()
             Capturer(self.interface).start()
 
     def set_device(self):

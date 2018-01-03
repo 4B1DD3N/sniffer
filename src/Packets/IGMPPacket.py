@@ -38,8 +38,10 @@ class IGMPPacket:
         self.checksum = igmp_header[2]
         self.group_address = igmp_header[3]
 
-        # If header length is greater than 4 bytes, it's IGMPv3.
-        # Parse accordingly...
+        '''
+        If header length is greater than 4 bytes, it's IGMPv3.
+        @TODO Parse accordingly...
+        '''
 
         return self
 
