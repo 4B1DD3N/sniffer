@@ -10,6 +10,7 @@ More information soon.
 
 ## Roadmap
 
+- [x] Config file
 - [x] Link layer parsing (Ethernet)
 - [x] Internet layer parsing
   - [x] IPv4
@@ -18,6 +19,8 @@ More information soon.
 - [x] Transport layer parsing (PDU's)
   - [x] TCP
   - [x] UDP
+- [ ] Identify protocols inside TCP/UDP
+  - [x] By port number
 - [ ] Application layer parsing
   - [ ] HTTP
   - [ ] DNS
