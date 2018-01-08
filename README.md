@@ -22,7 +22,7 @@ More information soon.
 - [ ] Identify protocols inside TCP/UDP
   - [x] By port number
   - [ ] More... 
-- [ ] Application layer parsing
+- [ ] Application layer parsing (these will be used for the demo at the end of the final work)
   - [ ] HTTP
   - [ ] DNS
   - [ ] FTP
