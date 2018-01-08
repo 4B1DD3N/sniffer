@@ -34,6 +34,7 @@ More information soon.
   - [x] Install
   - [ ] Prune
   - [x] Help
+- [ ] Documentation
 
 ### Installation
 
