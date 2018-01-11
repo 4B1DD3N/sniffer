@@ -35,7 +35,7 @@ class Capturer:
                 self.parse(header, packet)
 
         except (KeyboardInterrupt, SystemExit):
-            self.message.info('Stopped capturing packets.')
+            pass
 
     def parse(self, header, packet):
         ethernet_packet = EthernetPacket(packet)
@@ -57,6 +57,7 @@ class Capturer:
                 tcp_packet_payload = tcp_packet.get_payload()
 
                 # HTTP/1.1, HTTP/2.0
+                # @TODO do not assume, use heuristics like port number
                 if "HTTP" in tcp_packet_payload:
                     http_packet = HTTPPacket(tcp_packet_payload)
 

@@ -98,4 +98,4 @@ class Sniffer:
                 else:
                     os.system(input)
         except (KeyboardInterrupt, SystemExit):
-            self.message.info('Bye!')
+            pass

@@ -59,3 +59,14 @@ make clean-pyc
 ```
 
 ![](sniffer.PNG)
+
+## Documentation
+
+### Commands
+
+- clear (alias l): clear the terminal
+- commands (alias c): list all the commands
+- device set (alias ds): set the device to capture
+- start (alias s): start capturing traffic on the device
+- exit (alias e): exit the terminal
+- aliases (alias a): list the commands with aliases
