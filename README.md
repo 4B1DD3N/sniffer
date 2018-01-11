@@ -35,6 +35,7 @@ More information soon.
   - [ ] Prune
   - [x] Help
 - [ ] Documentation
+- [ ] Unit Testing
 
 ### Installation
 

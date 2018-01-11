@@ -1,4 +1,4 @@
-.PHONY: help clean-pyc install run all
+.PHONY: help clean-pyc install run tests all
 .DEFAULT_GOAL=help
 SHELL=/bin/bash
 
@@ -23,5 +23,8 @@ run: ## Run the application
 	fi
 	echo "Sniffer needs root permission to capture packets."
 	sudo ./sniffer
+
+tests: ## Run the unit tests
+	python -m unittest discover -s tests -p "*Test.py"
 
 all: install run ## Install and run the application
