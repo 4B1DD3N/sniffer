@@ -2,7 +2,7 @@ import random
 import string
 import unittest
 
-from src.Protocol import Protocol
+from src.Protocols.Protocol import Protocol
 
 
 class ProtocolTest(unittest.TestCase):

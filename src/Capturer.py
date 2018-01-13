@@ -8,7 +8,7 @@ from src.Packets.IGMPPacket import IGMPPacket
 from src.Packets.IPPacket import IPPacket
 from src.Packets.TCPPacket import TCPPacket
 from src.Packets.UDPPacket import UDPPacket
-from src.Protocols import Protocols
+from src.Protocols.ProtocolsCache import ProtocolsCache
 
 
 class Capturer:
@@ -22,6 +22,16 @@ class Capturer:
         self.message = Message()
 
     def start(self):
+        # Before starting, we need to make sure a few things are ready.
+        # Such as heuristics method... We need to build a cache for the protocols, etc.
+
+        if True:
+            protocols_cache = ProtocolsCache()
+
+            return
+        else:
+            return
+
         try:
             cap = pcapy.open_live(self.interface, 65536, 1, 0)
 
@@ -66,12 +76,13 @@ class Capturer:
                     self.message.info_space(http_packet.to_string())
 
                 else:
-                    protocol = Protocols().identify_protocol_by_port(tcp_packet.get_source_port())
+                    # protocol = Protocols().identify_protocol_by_port(tcp_packet.get_source_port())
 
-                    if protocol is not None:
-                        self.message.info_space('Found protocol %s in TCP packet' % protocol)
-                    else:
-                        self.message.info(tcp_packet.to_string())
+                    # if protocol is not None:
+                    #     self.message.info_space('Found protocol %s in TCP packet' % protocol)
+                    # else:
+                    #    self.message.info(tcp_packet.to_string())
+                    self.message.info('found another protocol')
 
             elif ip_packet_protocol == 17:
                 udp_packet = UDPPacket(ip_packet_payload)
