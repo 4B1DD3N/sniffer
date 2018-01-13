@@ -25,6 +25,6 @@ run: ## Run the application
 	sudo ./sniffer
 
 tests: ## Run the unit tests
-	python -m unittest discover -s tests -p "*Test.py"
+	python -m unittest discover -s tests -p "*Test.py" -b
 
 all: install run ## Install and run the application

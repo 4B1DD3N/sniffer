@@ -22,7 +22,7 @@ class ProtocolsCache:
         self.load()
 
     def load_from_AINA_api(self):
-        self.message.info('Fetching the protocols cache from the IANA api')
+        self.message.info('Fetching the protocols from the IANA api')
 
         for record in ElementTree.fromstring(requests.get(self.IANA_api).content):
             service_name = None
@@ -54,27 +54,36 @@ class ProtocolsCache:
             self.serialize_protocols_cache()
 
     def serialize_protocols_cache(self):
-        self.message.info('Serialization the protocols cache for faster usage in the future')
+        self.message.info('Creating the protocols cache for faster usage in the future')
 
         with open(self.path, 'wb') as protocols_cache:
             protocols_cache.write(pickle.dumps(self.protocols))
 
     def exists(self):
-        self.message.info('Checking if the protocols cache exists in serialization mode')
+        self.message.info('Checking if the protocols cache exists')
 
         if not os.path.isfile(self.path):
-            self.message.info('The protocols cache does not exist in serialization mode')
+            self.message.info('The protocols cache does not exist')
 
             return False
         else:
-            self.message.info('The protocols cache exists in serialization mode')
+            self.message.info('The protocols cache exists')
 
             return True
 
     def load_from_cache(self):
-        self.message.info('Loading the protocols cache from the serialization mode')
+        self.message.info('Loading the protocols cache')
 
         with open(self.path) as protocols_cache:
             self.protocols = pickle.load(protocols_cache)
 
         self.message.info('Loaded %s protocols from the cache' % len(self.protocols))
+
+    def get_protocols(self):
+        return self.protocols
+
+    def __iter__(self):
+        return iter(self.protocols)
+
+    def __len__(self):
+        return len(self.protocols)

@@ -8,7 +8,7 @@ from src.Packets.IGMPPacket import IGMPPacket
 from src.Packets.IPPacket import IPPacket
 from src.Packets.TCPPacket import TCPPacket
 from src.Packets.UDPPacket import UDPPacket
-from src.Protocols.ProtocolsCache import ProtocolsCache
+from src.Protocols.ProtocolIdentifier import ProtocolIdentifier
 
 
 class Capturer:
@@ -16,22 +16,15 @@ class Capturer:
     message = None
     verbose = 0
     captured_data = None
+    protocol_identifier = None
 
     def __init__(self, interface):
         self.interface = interface
         self.message = Message()
+        self.protocol_identifier = ProtocolIdentifier()
+        self.start()
 
     def start(self):
-        # Before starting, we need to make sure a few things are ready.
-        # Such as heuristics method... We need to build a cache for the protocols, etc.
-
-        if True:
-            protocols_cache = ProtocolsCache()
-
-            return
-        else:
-            return
-
         try:
             cap = pcapy.open_live(self.interface, 65536, 1, 0)
 
