@@ -21,10 +21,33 @@ class Protocol:
         return self.service_name
 
     def get_port_number(self):
-        return self.port_number
+        if self.port_number is None:
+            return None
+        elif '-' in self.port_number:
+            return self.port_number.split('-')
+
+        return int(self.port_number)
+
+    def is_port_number_in_port_range(self, port_number):
+        port_numbers = self.get_port_number()
+
+        if port_numbers is None:
+            return False
+        elif isinstance(port_numbers, list):
+            for x in port_numbers:
+                if int(x) == port_number:
+                    return True
+        else:
+            return int(port_numbers) == port_number
+
+        return False
 
     def get_transport_protocol(self):
         return self.transport_protocol
 
     def get_description(self):
         return self.description
+
+    def to_string(self):
+        return 'Protocol: %s, Port Number: %s, Transport Protocol: %s, Description: %s' \
+               % (self.service_name, self.port_number, self.transport_protocol, self.description)

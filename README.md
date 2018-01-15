@@ -30,13 +30,16 @@ More information soon.
 - [ ] DNI Selectors
 - [ ] Improve Makefile (all, clean, install, prune, help)
   - [ ] All
-  - [ ] Clean
+  - [ ] Clean (cache, *.pyc, etc)
   - [x] Install
   - [ ] Prune
   - [x] Help
   - [x] Tests
 - [ ] Documentation
 - [ ] Unit Testing
+  - [x] Setup
+  - [ ] Test all objects
+- [ ] Docblocks
 
 ### Installation
 
