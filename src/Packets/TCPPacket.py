@@ -26,6 +26,9 @@ class TCPPacket:
     def get_source_port(self):
         return int(self.source_port)
 
+    def get_destination_port(self):
+        return int(self.destination_port)
+
     def parse(self):
         tcp_header = unpack('!HHLLBBHHH', self.packet[:self.header_length])
 

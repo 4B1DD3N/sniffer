@@ -29,9 +29,15 @@ class ProtocolTest(unittest.TestCase):
         self.assertIsNotNone(self.service_name)
         self.assertEqual(self.protocol.get_service_name(), self.service_name)
 
-    def test_port_number(self):
+    def test_port_numbers(self):
         self.assertIsNotNone(self.port_number)
-        self.assertEqual(self.protocol.get_port_number(), self.port_number)
+        self.assertEqual(self.protocol.get_port_numbers(), [self.port_number])
+
+    def test_port_numbers_with_range(self):
+        protocol = Protocol(None, '1-2')
+        
+        self.assertIsNotNone(protocol.get_port_numbers())
+        self.assertEqual(protocol.get_port_numbers(), [1, 2])
 
     def test_transport_protocol(self):
         self.assertIsNotNone(self.transport_protocol)

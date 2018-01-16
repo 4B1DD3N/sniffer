@@ -1,4 +1,5 @@
 from src.Output.Message import Message
+from src.Packets.UDPPacket import UDPPacket
 from src.Packets.TCPPacket import TCPPacket
 from src.Protocols.ProtocolsCache import ProtocolsCache
 
@@ -13,19 +14,17 @@ class ProtocolIdentifier:
         self.message.info('Sniffer can use heuristics to identify %s different protocols' % len(self.protocols))
 
     def identify_protocol(self, packet):
-        if isinstance(packet, TCPPacket):
-            protocol = self.identity_by_port_number(packet.get_source_port())
-
-            if protocol is not None:
-                self.message.info('Identified protocol! %s' % protocol.to_string())
-            else:
-                self.message.info('Unable to identify protocol')
+        if isinstance(packet, TCPPacket) or isinstance(packet, UDPPacket):
+            # @TODO Use more heuristic methods to identify the protocol.
+            return self.identity_protocol_by_port_numbers([packet.get_source_port(), packet.get_destination_port()])
         else:
-            self.message.info('Unsupported transport protocol (not TCP/UDP)')
+            return None
 
-    def identity_by_port_number(self, port_number):
+    def identity_protocol_by_port_numbers(self, port_numbers):
         for protocol in self.protocols:
-            if protocol.is_port_number_in_port_range(port_number):
+            # If intersection exists between the protocol port numbers and the given port numbers, then we have found a
+            # possible protocol.
+            if len(set(protocol.get_port_numbers()) & set(port_numbers)) > 0:
                 return protocol
 
         return None

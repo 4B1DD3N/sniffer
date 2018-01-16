@@ -18,6 +18,12 @@ class UDPPacket:
     def get_payload(self):
         return self.payload
 
+    def get_source_port(self):
+        return int(self.source_port)
+
+    def get_destination_port(self):
+        return int(self.destination_port)
+
     def parse(self):
         udp_header = unpack('!HHHH', self.packet[:self.header_length])
 
