@@ -17,12 +17,8 @@ class EthernetPacket:
 
     @staticmethod
     def ethernet_address(address):
-        return "%.2x:%.2x:%.2x:%.2x:%.2x:%.2x" % (ord(address[0]),
-                                                  ord(address[1]),
-                                                  ord(address[2]),
-                                                  ord(address[3]),
-                                                  ord(address[4]),
-                                                  ord(address[5]))
+        return "%.2x:%.2x:%.2x:%.2x:%.2x:%.2x" % (ord(address[0]), ord(address[1]), ord(address[2]),
+                                                  ord(address[3]), ord(address[4]), ord(address[5]))
 
     def get_type(self):
         return self.type
